@@ -5,16 +5,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     CheckBox chk1, chk2;
+    ArrayList<CheckBox> chkList;
+    RadioGroup rg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        chkList = new ArrayList<>();
         chk1 = (CheckBox) findViewById(R.id.checkBox);
         chk2 = (CheckBox) findViewById(R.id.checkBox2);
+        rg = (RadioGroup) findViewById(R.id.radioGroup);
+        chkList.add(chk1);
+        chkList.add(chk2);
         chk1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -24,13 +33,22 @@ public class MainActivity extends AppCompatActivity {
     }
     public void click1(View v)
     {
-        if (chk2.isChecked())
+        for (CheckBox chk : chkList)
         {
-            Toast.makeText(MainActivity.this, "有勾 ", Toast.LENGTH_LONG).show();
+            if (chk.isChecked())
+            {
+                Toast.makeText(MainActivity.this, chk.getText().toString(), Toast.LENGTH_LONG).show();
+            }
         }
-        else
+
+        switch (rg.getCheckedRadioButtonId())
         {
-            Toast.makeText(MainActivity.this, "沒勾 ", Toast.LENGTH_LONG).show();
+            case R.id.radioButton:
+                Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.radioButton2:
+                Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 }
