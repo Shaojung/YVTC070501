@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -50,5 +51,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    public void click2(View v)
+    {
+        ProgressBar pb2 = (ProgressBar) findViewById(R.id.progressBar2);
+        pb2.setProgress(pb2.getProgress() + 10);
+
     }
 }
