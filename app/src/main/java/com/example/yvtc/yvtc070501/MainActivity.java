@@ -7,12 +7,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     CheckBox chk1, chk2;
+    SeekBar sb;
     ArrayList<CheckBox> chkList;
     RadioGroup rg;
     @Override
@@ -23,12 +26,30 @@ public class MainActivity extends AppCompatActivity {
         chk1 = (CheckBox) findViewById(R.id.checkBox);
         chk2 = (CheckBox) findViewById(R.id.checkBox2);
         rg = (RadioGroup) findViewById(R.id.radioGroup);
+        sb = (SeekBar) findViewById(R.id.seekBar);
         chkList.add(chk1);
         chkList.add(chk2);
         chk1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Toast.makeText(MainActivity.this, "Check Change!! " + isChecked, Toast.LENGTH_LONG).show();
+            }
+        });
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                TextView tv = (TextView) findViewById(R.id.textView);
+                tv.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
